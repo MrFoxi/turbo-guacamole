@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="main_box">
+        <h1 class="titre">Veuillez créer une conférence pour accéder au planning</h1>
+        <div class="form_box">
+            <form action="", method="post" enctype="multipart/form-data" class="form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Créer la conférence" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

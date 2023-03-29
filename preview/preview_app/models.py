@@ -9,6 +9,12 @@ class Conference(models.Model):
 
     titre = models.fields.CharField(max_length=50)
     description = models.fields.CharField(max_length=255)
+    logo = models.ImageField(upload_to='preview_app/static/images', blank=True, null=True)
+
+class Jour(models.Model):
+
+    date = models.DateField(primary_key=True)
+
 
 
 class Salle(models.Model):
@@ -41,7 +47,7 @@ class Intervenant(models.Model):
     prenom = models.fields.CharField(max_length=50)
 
     # Photo à voir si token ou autre manière à enregistrer
-    photo = models.fields.CharField(max_length=60)
+    logo = models.ImageField(upload_to='', blank=True, null=True)
 
 class Presentation(models.Model):
 

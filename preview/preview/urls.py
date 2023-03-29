@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from preview_app import views
+from conference import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('conference/', views.index, name='conference'),
     # path('hello/', views.hello)
 ]

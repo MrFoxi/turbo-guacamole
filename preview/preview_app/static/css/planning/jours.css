@@ -1,0 +1,17 @@
+.liste_jours{
+    background-color: lightsteelblue;
+    padding: 2rem;
+    width: 100%;
+    height: 10rem;
+}
+.bouton_jour{
+    background-color: rgb(224, 236, 247);
+    border: none;
+    width: 20rem;
+    height: 4rem;
+    border-radius: 10px 10px 0 0;
+    font-weight: bold;
+}
+.bouton_jour:hover{
+    background-color: rgb(116, 142, 214);
+}

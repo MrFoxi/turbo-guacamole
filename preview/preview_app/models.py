@@ -24,7 +24,7 @@ class Salle(models.Model):
 
     titre = models.fields.CharField(max_length=50)
     # Date a corriger pour afficher que les jours
-    date = models.fields.DateField()
+    # date = models.fields.DateField()
     
 
 

@@ -28,6 +28,7 @@ urlpatterns = [
     # PLANNING
     path('planning/', planning_views.planning, name='planning'),
     #path('planning/<int:jour_id>/', planning_views.jour, name='jour'),
+    path('planning_ajout/', planning_views.ajout_salle, name='ajout_salle'),
 
     # path('hello/', views.hello)
 ]

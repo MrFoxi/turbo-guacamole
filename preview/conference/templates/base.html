@@ -5,18 +5,28 @@
     <title>Preview</title>
     <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/planning/planning.css' %}">
+    <link rel="stylesheet" href="{% static 'css/planning/salles.css' %}">
     <link rel="stylesheet" href="{% static 'css/planning/jours.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 </head>
 <body>
-    {% block conference %}{% endblock %}
-
-    {% if jours_existants > 0 %}
-        <div class="liste_jours">
-            {% block planning %}{% endblock %}
+    <!-- {% block conference %}{% endblock %} -->
+    <!-- ! Condition non valide pour rentrer dans la boucle -->
+    <!-- **mettre en commentaire les block ne fonctionne pas -->
+    <!-- **ils sont toujours pris en compte -->
+    <!-- **magie noire -->
+    <div class="main_page">
+        <div class="liste" id="liste_jours">   
             {% block jours %}{% endblock %}
         </div>
-        <h3>Coucou</h3>
-    {% endif %}
+        <div class="liste" id="liste_salles">   
+            {% block salles %}{% endblock %}
+        </div>
+        <div class="planning">
+            {% block planning %}{% endblock %}
+        </div>
+    </div>
+    
+    
 </body>
 </html>

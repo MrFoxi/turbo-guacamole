@@ -1,0 +1,35 @@
+<!-- PERMET L'AFFICHAGE DES salles -->
+{% block salles %}
+    <!-- <h4>Salle(s) de la conférence</h4> -->
+        <!-- ajouter le lien cliquable -->
+        {% for salle in salles %}
+        <button href="" class="bouton_jour">
+            {{ salle.titre }}
+        </button>
+    {% endfor %}
+    <button class="bouton_jour" id="plus_salle">+</button>
+
+        <!-- ? Import de AJAX pour utiliser la syntaxe -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script defer>
+        $(document).ready(function(){
+        $('#plus_salle').click(function(){
+        $.ajax({
+            url: '/planning_ajout/',
+            type: 'POST',
+            // data: {param1: 'valeur1', param2: 'valeur2'},
+            success: function(response){
+                console.log("reponse => ", response);
+            },
+            error: function(xhr, status, error){
+                console.log("status => ", status);
+                console.log("error => ", error);
+                console.log("xhr => ", xhr);
+                console.log("c'est la merde !!")
+            }
+        });
+    });
+});
+
+    </script>
+{% endblock %}

@@ -1,15 +1,22 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from preview_app.models import Conference, Jour
+from preview_app.models import Conference, Jour, Salle
 from conference.forms import ConferenceForm
 from datetime import timedelta
+from django.urls import reverse
 
 def index(request):
+    # On prend la liste des jours pour afficher le form de conference ou pas s'il y'en a
+    jours_existants = Jour.objects.all()
     if request.method == 'POST':
         form = ConferenceForm(request.POST, request.FILES)
         if form.is_valid():
             conference = form.save(commit=False)
             conference.save()
+
+
+            # Créer la salle par défaut pour un planning simple et en ajouter par la suite
+            Salle.objects.create(titre='Salle 1')
 
             debut = form.cleaned_data.get('debut')
             fin = form.cleaned_data.get('fin')
@@ -30,6 +37,9 @@ def index(request):
         form = ConferenceForm()
 
     if Conference.objects.exists():
-        return HttpResponse('<h1>À propos</h1> <p>Nous adorons merch !</p>')
+        # return render(request, '../../planning/templates/planning/base.html')
+        jours = Jour.objects.all()
+        url = reverse('planning')
+        return redirect(url)
     else:
-        return render(request ,'conference/conference.html', {'form': form})
+        return render(request ,'conference/conference.html', {'form': form, 'jours_existants': jours_existants})

@@ -1,0 +1,11 @@
+#liste_salles{
+    height: 6rem;
+}
+#plus_salle{
+    width: 6rem;
+    color: black;
+}
+#plus_salle:hover{
+    background-color: rgb(45, 28, 232);
+    color: white;
+}

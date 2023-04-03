@@ -15,11 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from preview_app import views
-from conference import views
+from preview_app import views as preview_app_view
+from conference import views as conference_view
+from presentation import views as presentation_view
+from planning import views as planning_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('conference/', views.index, name='conference'),
-    # path('hello/', views.hello)
+    path('conference/', conference_view.index, name='conference'),
+    path('presentation/', presentation_view.presentation, name='presentation'),
+    # PLANNING
+    path('planning/', planning_views.planning, name='planning'),
+    #path('planning/<int:jour_id>/', planning_views.jour, name='jour'),
+    path('planning_ajout/', planning_views.ajout_salle, name='ajout_salle'),
 ]

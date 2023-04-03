@@ -24,7 +24,7 @@ class Salle(models.Model):
 
     titre = models.fields.CharField(max_length=50)
     # Date a corriger pour afficher que les jours
-    date = models.fields.DateField()
+    # date = models.fields.DateField()
     
 
 
@@ -35,7 +35,7 @@ class Session(models.Model):
 
     titre = models.fields.CharField(max_length=50)
     # Date a corriger pour les horraires
-    date = models.fields.DateField()
+    date = models.fields.TimeField()
     id_salle = models.ForeignKey(Salle, on_delete=models.CASCADE)
 
 class Intervenant(models.Model):

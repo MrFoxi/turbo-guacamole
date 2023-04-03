@@ -1,0 +1,15 @@
+<!-- REGROUPE LES DIFFERENTES PARTIES A MERGE ENSEMBLE -->
+<!-- GENRE AFFICHAGE DES JOURS + L'EDT + LES HEURES -->
+<!-- ///////////////////////// -->
+{% extends 'base.html' %}
+
+<div class="main_page">
+        {% block jours %}
+                {% include './jours.html' %}
+        {% endblock %}
+        <!-- ///////////////////////// -->
+        {% block salles %}
+                {% include './salles.html' %}
+        {% endblock %}  
+</div>
+<!-- ///////////////////////// -->

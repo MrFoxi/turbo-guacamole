@@ -35,7 +35,7 @@ class Session(models.Model):
 
     titre = models.fields.CharField(max_length=50)
     # Date a corriger pour les horraires
-    date = models.fields.TimeField()
+    duree = models.IntegerField() # durée en minutes
     id_salle = models.ForeignKey(Salle, on_delete=models.CASCADE)
 
 class Intervenant(models.Model):

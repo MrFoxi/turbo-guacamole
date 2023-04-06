@@ -1,40 +1,109 @@
 <!-- PERMET L'AFFICHAGE DES salles -->
 {% block salles %}
-    <!-- <h4>Salle(s) de la conférence</h4> -->
-        <!-- ajouter le lien cliquable -->
-        {% for salle in salles %}
-        <button href="" class="bouton_jour">
-            {{ salle.titre }}
-        </button>
-    {% endfor %}
-    <button class="bouton_jour" id="plus_salle">+</button>
+<!-- <h4>Salle(s) de la conférence</h4> -->
+<!-- ajouter le lien cliquable -->
+{% for salle in salles %}
+<div href="" class="bouton_salle" >
+    <div class="editable-text" data-id="{{ salle.id }}" contenteditable>{{ salle.titre }}</div>
+    <div class="editable-text-updated" style="display:none;"></div>
+    <div class="salle_entiere"></div>
+</div>
+{% endfor %}
+<button id="plus_salle">+
+    <div id="horaires"></div>
+</button>
 
-        <!-- ? Import de AJAX pour utiliser la syntaxe -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script defer>
-        $(document).ready(function(){
-        $('#plus_salle').click(function(){
-        $.ajax({
-            url: '/planning_ajout/',
-            type: 'POST',
-            // data: {param1: 'valeur1', param2: 'valeur2'},
-            success: function(response){
-                console.log("reponse => ", response);
-            },
-            error: function(xhr, status, error){
-                console.log("status => ", status);
-                console.log("error => ", error);
-                console.log("xhr => ", xhr);
-                console.log("c'est la merde !!")
-            }
+<section class="pop-up" id="pop-up">
+    <!-- creation du formulaire -->
+    <!-- ? Il faut mettre le form dans la vue planning pour qu'il s'affiche -->
+    <h2 class="titre_session">Création d'une session</h2>
+    <button id="fermer_pop-up">&times</button>
+    <div class="form_box">
+        <form action="{% url 'planning' %}", method="post" enctype="multipart/form-data" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Créer la session" class="btn btn-primary">
+        </form>
+    </div>
+</section>
+
+<!-- ? Import de AJAX pour utiliser la syntaxe -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script defer>
+    $(document).ready(function () {
+        $('#plus_salle').click(function () {
+            $.ajax({
+                url: '/planning_ajout/',
+                type: 'POST',
+                // data: {param1: 'valeur1', param2: 'valeur2'},
+                success: function (response) {
+                    console.log("reponse => ", response);
+                },
+                error: function (xhr, status, error) {
+                    console.log("status => ", status);
+                    console.log("error => ", error);
+                    console.log("xhr => ", xhr);
+                    console.log("c'est la merde !!")
+                }
+
+            });
+            setTimeout(function () {
+                location.reload();
+            }, 20);
+
             
-        });
-        setTimeout(function(){
-            location.reload();
-        }, 20);
-    });
-    
-});
 
-    </script>
+        });
+        $(".editable-text").on("blur", function () {
+            var id = $(this).attr("data-id");
+            var updatedText = $(this).html();
+            var editableUpdated = $(this).siblings(".editable-updated");
+            console.log(id, updatedText)
+            editableUpdated.html(updatedText);
+            
+            $.ajax({
+                url: "/planning_update/",
+                type: "POST",
+                data: {
+                    text: updatedText,
+                    id: id
+                },
+                success: function (response) {
+                    console.log("Le texte a été enregistré !");
+                },
+                error: function (xhr, status, error) {
+                    console.log("Une erreur s'est produite : " + error);
+                    console.log("c'est la merde (fonction update-text)")
+                }
+            });
+            setTimeout(function () {
+                location.reload();
+            }, 50);
+        });
+
+        $(".salle_entiere").dblclick(function(){
+            console.log("click");
+            //display la pop-up de création
+            pop_up.style.display = ""
+
+        });
+    });
+
+    // animation de la pop up
+    var salle = document.querySelector('.salle_entiere')
+    var croix_fermeture = document.querySelector('#fermer_pop-up')
+    //dblclick
+    salle.addEventListener('dblclick', () => {
+        document.getElementsByClassName('pop-up')[0].classList.add('active')
+    })
+
+    //click sur la croix et ça disparait 
+    croix_fermeture.addEventListener('click', () => {
+        document.getElementsByClassName('pop-up')[0].classList.remove('active')
+    })
+    
+
+</script>
+
+
 {% endblock %}

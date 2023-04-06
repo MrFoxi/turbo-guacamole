@@ -1,16 +1,22 @@
 html{
-
+    width: 100vw;
+    height: 100vh;
 }
 body{
     display: flex;
     justify-content: center;
     padding: 2rem;
+    width: 100%;
+    overflow-y: hidden;
+}
+.main_page{
+    width: 100%;
 }
 .main_box{
     display: block;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 95%;
     height: 100%;
     /* background-color: aliceblue; */
     padding: 2rem;

@@ -8,9 +8,10 @@
     background-color: rgb(81, 109, 190);
 }
 .bouton_jour{
+    text-align: center;
     background-color: rgb(224, 236, 247);
     border: none;
-    width: 20rem;
+    flex-grow: 1;
     height: 4rem;
     border-radius: 10px 10px 0 0;
     font-weight: bold;

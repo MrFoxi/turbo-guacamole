@@ -1,7 +1,7 @@
 from django import forms
 
 from django.forms.widgets import SelectMultiple
-from preview_app.models import Conference, Jour
+from preview_app.models import Conference, Jour, Session
 
 
 class ConferenceForm(forms.ModelForm):
@@ -13,3 +13,8 @@ class ConferenceForm(forms.ModelForm):
         fields = '__all__' # supprimez cette ligne
 
 
+
+class SessionForm(forms.ModelForm):
+    class Meta:
+        model = Session
+        fields = '__all__'

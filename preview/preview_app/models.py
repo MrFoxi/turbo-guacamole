@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import FileExtensionValidator
 
 # Create your models here.
 
@@ -35,7 +36,7 @@ class Session(models.Model):
 
     titre = models.fields.CharField(max_length=50)
     # Date a corriger pour les horraires
-    date = models.fields.TimeField()
+    duree = models.IntegerField()
     id_salle = models.ForeignKey(Salle, on_delete=models.CASCADE)
 
 class Intervenant(models.Model):
@@ -58,7 +59,7 @@ class Presentation(models.Model):
     description = models.fields.CharField(max_length=255)
 
     # Pptx a voir comment ça va être enregistré
-    fichier_pptx = models.fields.CharField(max_length=60)
+    fichier_pptx = models.FileField(upload_to='preview_app/static/pptx/', validators=[FileExtensionValidator(['pptx'])])
     id_session = models.ForeignKey(Session, on_delete=models.CASCADE)
 
 # A demander comment faire la table croisée

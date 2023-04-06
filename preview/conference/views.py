@@ -5,9 +5,15 @@ from conference.forms import ConferenceForm
 from datetime import timedelta
 from django.urls import reverse
 
+
+def accueil(request):
+    accueil_exists = True
+    return render(request, 'conference/accueil.html' , {'accueil_exists': accueil_exists})
+
 def index(request):
     # On prend la liste des jours pour afficher le form de conference ou pas s'il y'en a
     jours_existants = Jour.objects.all()
+    conference_exists = False
     if request.method == 'POST':
         form = ConferenceForm(request.POST, request.FILES)
         if form.is_valid():
@@ -40,6 +46,7 @@ def index(request):
         # return render(request, '../../planning/templates/planning/base.html')
         jours = Jour.objects.all()
         url = reverse('planning')
+        conference_exists = True
         return redirect(url)
     else:
-        return render(request ,'conference/conference.html', {'form': form, 'jours_existants': jours_existants})
+        return render(request ,'conference/conference.html', {'form': form, 'jours_existants': jours_existants, 'conference_exists': conference_exists})

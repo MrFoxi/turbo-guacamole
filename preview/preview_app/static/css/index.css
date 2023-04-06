@@ -1,16 +1,117 @@
-html{
+* {
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+	list-style: none;
+	box-sizing: border-box;
+}
 
+
+nav {
+	display: flex;
+	flex-direction: column;
+	background: #4d694e;
+	height: 80px;
+	width: 100%;
 }
+label.logo {
+	color: white;
+	font-size: 35px;
+	line-height: 80px;
+	padding: 0 100px;
+	font-weight: bold;
+}
+nav ul {
+	float: right;
+	margin-right: 20px;
+}
+nav ul li {
+	display: inline-block;
+	line-height: 80px;
+	margin: 0 5px;
+}
+nav ul li a {
+	color: white;
+	font-size: 17px;
+	padding: 7px 13px;
+	border-radius: 3px;
+	text-transform: uppercase;
+}
+a.active, a:hover {
+	color: #ffffff;
+	background: #90b695;
+	transition: .5s;
+}
+.checkbtn {
+	font-size: 30px;
+	color: white;
+	float: right;
+	line-height: 80px;
+	margin-right: 40px;
+	cursor: pointer;
+	display: none;
+}
+#check {
+	display: none;
+}
+@media (max-width: 952px){
+	label.logo{
+		font-size: 30px;
+		padding-left: 50px;
+	}
+	nav ul li a{
+		font-size: 16px;
+	}
+}
+@media (max-width: 858px){
+	.checkbtn {
+		display: block;
+	}
+	ul{
+		position: fixed;
+		width: 100%;
+		height: 100vh;
+		background: #1d075f;
+		top: 80px;
+		left: -100%;
+		text-align: center;
+		transition: all .5s;
+	}
+	nav ul li{
+		display: block;
+		margin: 50px 0;
+		line-height: 30px;
+	}
+	nav ul li a {
+		font-size: 20px;
+	}
+	a:hover, a.active {
+		background: none;
+		color: #5434af;
+	}
+	#check:checked ~ ul {
+		left: 0;
+	}
+}
+
 body{
-    display: flex;
+    /* display: flex; */
+    flex-direction: column;
     justify-content: center;
-    padding: 2rem;
+    /* padding: 2rem; */
+    width: 100%;
+    overflow-y: hidden;
+	overflow-x: hidden;
 }
+.main_page{
+    width: 100%;
+}
+
 .main_box{
     display: block;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 100%;
     height: 100%;
     /* background-color: aliceblue; */
     padding: 2rem;
@@ -41,3 +142,49 @@ body{
 .btn-primary{
     width: 100%;
 }
+
+
+.box-bienvenue-color {
+    display: block;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    max-width: 80%;
+    padding: 1px 0% 1px 0%;
+    
+    border-radius: 7.5%;
+  }
+  .box-bienvenue {
+    display: block;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    max-width: 90%;
+    max-height: 100%;
+    background-color: #9aecc6;
+    padding: 2%;
+    border-radius: 10rem;
+  }
+
+  .box-bienvenue h1 {
+    text-align: center;
+    margin-bottom: 5%;
+  }
+
+  .box-bienvenue img {
+    
+    display: block;
+    margin: auto;
+    min-width: 30%;
+    max-width: 30%;
+    border: #424242 solid 2px;
+    border-radius: 100%;
+    border-width: 10%;
+  }
+
+  .box-bienvenue p {
+    margin-top: 4%;
+    font-size: xx-large;
+    text-align: center;
+    margin-bottom: 5%;
+  }

@@ -2,27 +2,40 @@
 {% block pres %}
 
     <div id="forms">
-        <form id="" action="" enctype="multipart/form-data" method="post" class="form-example">
+        
             <div class="head_box">
-
+                {% csrf_token %}
             </div>
             <div id="big_box">
                 <ul id="presta_box">
-                    <li id='presta_list'>
-                        <div id='pp_box'><img src ='intervenant/$token_photo' id='pp'></div>
-                        <div id='list'>
-                            <h1>Exemple de titre</h1>
-                            <p>Exemple de description</p>
-                            <p></p>
-                            <h4></h4>
-                        </div>
-                    </li>
+                    {% for presentation in presentations %}
+                        <li id='presta_list'>
+                            <div id='pp_box'><img src ='{{ presentation.id_intervenant.logo.url }}' id='pp'></div>
+                            <div id='list'>
+                                <h1>{{ presentation.titre }}</h1>
+                                <p>{{ presentation.description }}</p>
+                                <h4>
+                                    {% for interpresent in presentation.interpresent_set.all %}
+                                        {{ interpresent.id_intervenant.nom }} {{ interpresent.id_intervenant.prenom }}
+                                    {% endfor %}
+                                </h4>
+                            </div>
+                            <div data-modal-target='#modal' class='lien'>
+                                <form action="{% url 'button_open_pptx' %}" id="form_{{ presentation.id }}" enctype="multipart/form-data" method="post" class="form-example">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="presentation_id" value="{{ presentation.id }}">
+                                    <input type="submit" class='btn-primary' value="Voilà tok">
+                                </form>
+                            </div>
+                        </li>
+                    {% endfor %}
                 </ul>
+                
+                
             </div>            
             <div class="footer_box">
                 
             </div>
-        </form>
     </div>
 
 {% endblock %}

@@ -1,0 +1,10 @@
+{% block form %}
+
+<h2 class="titre_session">Création d'une session</h2>
+    <div class="form_box">
+        <form action="", method="post" enctype="multipart/form-data" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Créer la session" class="btn btn-primary">
+        </form>
+    </div>

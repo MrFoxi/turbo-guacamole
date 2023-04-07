@@ -21,11 +21,10 @@ def index(request):
             conference.save()
 
 
-            # Créer la salle par défaut pour un planning simple et en ajouter par la suite
-            Salle.objects.create(titre='Salle 1')
-
             debut = form.cleaned_data.get('debut')
             fin = form.cleaned_data.get('fin')
+
+            nbr_salle = form.cleaned_data.get('nbr_salle')
 
             # Créer tous les jours entre debut et fin
             jours = []
@@ -38,6 +37,9 @@ def index(request):
             for jour in jours:
                 Jour.objects.create(date=jour)
 
+            for i in range(nbr_salle):
+                Salle.objects.create(titre="Salle "+str(i))
+            
             return redirect('conference')
     else:
         form = ConferenceForm()
@@ -45,7 +47,7 @@ def index(request):
     if Conference.objects.exists():
         # return render(request, '../../planning/templates/planning/base.html')
         jours = Jour.objects.all()
-        url = reverse('planning')
+        url = reverse('gestion')
         conference_exists = True
         return redirect(url)
     else:

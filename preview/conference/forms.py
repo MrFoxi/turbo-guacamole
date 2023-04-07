@@ -8,6 +8,8 @@ class ConferenceForm(forms.ModelForm):
     debut = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     fin = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
 
+    nbr_salle = forms.IntegerField()
+
     class Meta:
         model = Conference
         fields = '__all__' # supprimez cette ligne

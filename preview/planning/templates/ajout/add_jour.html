@@ -1,0 +1,12 @@
+{% block add_jour %}
+    <!-- ajouter le lien cliquable -->
+        <div class="conteneur_form">
+            {% for all_jour in all_jours %}
+                <form action="{% url 'jour_detail' all_jour.id %}" id="form_{{ all_jour.id }}" enctype="multipart/form-data" method="post" >
+                    {% csrf_token %}
+                    <input type="hidden" name="salle_id" value="{{ all_jour.id }}">
+                    <input type="submit" class='bouton_jour' value="{{ all_jour.date }}">
+                </form>
+            {% endfor %}
+        </div>
+{% endblock %}

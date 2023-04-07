@@ -1,0 +1,15 @@
+{% block add_salle %}
+        <div class="conteneur_form">
+            {% for all_salle in all_salles %}
+                <!-- <button href="" class="bouton_jour">
+                    {{ all_salle.titre }}
+                </button> -->
+
+                <form action="{% url 'salle_detail' all_salle.id %}" id="form_{{ all_salle.id }}" enctype="multipart/form-data" method="post" >
+                    {% csrf_token %}
+                    <input type="hidden" name="salle_id" value="{{ all_salle.id }}">
+                    <input type="submit" class='bouton_jour' value="{{ all_salle.titre}}">
+                </form>
+            {% endfor %}
+        </div>
+{% endblock %}

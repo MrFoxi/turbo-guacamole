@@ -48,8 +48,8 @@ def button_open_pptx(request):
 
     presentation = Presentation.objects.get(id=presentation_id)
     fichier_pptx = presentation.fichier_pptx
-    print("C:\\Users\\conta\\Desktop\\Python\\InterfaceLocale\\preview\\"+fichier_pptx)
-    # open_ppt("192.168.0.157", "C:\\Users\\conta\\Desktop\\Python\\InterfaceLocale\\preview\\"+fichier_pptx)
+    print(fichier_pptx.path)
+    open_ppt("192.168.0.155", fichier_pptx.path)
     print('hello')
     return redirect('presentation')
     # return render(request, 'presentation/presentation.html', {})

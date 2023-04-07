@@ -105,6 +105,7 @@ body{
 }
 .main_page{
     width: 100%;
+	background-color: #516dbe;
 }
 
 .main_box{
@@ -187,4 +188,40 @@ body{
     font-size: xx-large;
     text-align: center;
     margin-bottom: 5%;
+  }
+
+
+.conteneur_form {
+	display: flex;
+}
+
+.conteneur_form > form {
+	margin-right: 2px;
+	width: 15rem;
+}
+
+.conteneur_form > form > input {
+	width: 100%;
+}
+
+
+
+.big_box_gestion {
+	height: 80%;
+	width: 100%;
+	background-color: beige;
+	flex-direction: row;
+	display: flex;
+	justify-content: space-around;
+  }
+  .list_element {
+	width: 30%;
+	height: 100%;
+	padding: 2rem;
+	background: olivedrab;
+  }
+  .add_element {
+	width: 60%;
+	height: 100%;
+	background-color: darkcyan;
   }

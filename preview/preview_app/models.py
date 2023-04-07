@@ -14,7 +14,10 @@ class Conference(models.Model):
 
 class Jour(models.Model):
 
-    date = models.DateField(primary_key=True)
+    def __str__(self):
+        return f'{self.date}'
+
+    date = models.DateField()
 
 
 

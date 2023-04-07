@@ -23,20 +23,33 @@ from planning import views as planning_views
 
 
 urlpatterns = [
+
+    # -----------------------------------------------------------------------------------| Accueil |----------------------------------------------------------------------------------- #
     path('', conference_view.accueil, name='accueil'),
 
-
+    # -----------------------------------------------------------------------------------| Admin |----------------------------------------------------------------------------------- #
     path('admin/', admin.site.urls),
+
+
+    # -----------------------------------------------------------------------------------| Conference |----------------------------------------------------------------------------------- #
     path('conference/', conference_view.index, name='conference'),
+
+
+    # -----------------------------------------------------------------------------------| Presentation |----------------------------------------------------------------------------------- #
     path('presentation/', presentation_view.presentation, name='presentation'),
 
     path('ouvrir-presentation/', button_open_pptx, name='button_open_pptx'),
 
     path('add_presentation/', presentation_view.add_presentation, name="add_presentation"),
     
-    # PLANNING
+    # -----------------------------------------------------------------------------------| Planning |----------------------------------------------------------------------------------- #
     path('planning/', planning_views.planning, name='planning'),
     #path('planning/<int:jour_id>/', planning_views.jour, name='jour'),
     path('planning_ajout/', planning_views.ajout_salle, name='ajout_salle'),
     path('planning_update/', planning_views.update_text, name='update_text'),
+
+    # -----------------------------------------------------------------------------------| Gestion |----------------------------------------------------------------------------------- #
+    path('gestion/', planning_views.jour, name='gestion'),
+    path('gestion/jour=<int:jour_id>/', planning_views.jour_detail, name='jour_detail'),
+    
 ]
